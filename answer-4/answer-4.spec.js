@@ -110,4 +110,78 @@ describe("Answer 4", () => {
 			["kia"],
 		]);
 	});
+
+	test("input 8 when it has one string with capitalize / uppercase inside array", () => {
+		const input = [
+			"kita",
+			"atik",
+			"data",
+			"tika",
+			"aku",
+			"adat",
+			"kia",
+			"makan",
+			"taad",
+			"kua",
+			"tada",
+		];
+
+		t0 = performance.now();
+		const output = groupingAnagram(input);
+		t1 = performance.now();
+		console.log(`Test #8 : ${t1 - t0} ms.`);
+
+		expect(output).toHaveLength(5);
+		expect(output).toEqual([
+			["data", "adat", "taad", "tada"],
+			["kita", "atik", "tika"],
+			["aku", "kua"],
+			["makan"],
+			["kia"],
+		]);
+	});
+
+	test("input 9 when it has one string with capitalize / uppercase inside array", () => {
+		const input = [
+			"kita",
+			"atik",
+			"tika",
+			"aku",
+			"kia",
+			"makan",
+			"minum",
+			"kua",
+		];
+
+		t0 = performance.now();
+		const output = groupingAnagram(input);
+		t1 = performance.now();
+		console.log(`Test #9 : ${t1 - t0} ms.`);
+
+		expect(output).toHaveLength(5);
+		expect(output).toEqual([
+			["kita", "atik", "tika"],
+			["aku", "kua"],
+			["makan"],
+			["minum"],
+			["kia"],
+		]);
+	});
+
+	test("input 10 when it has one string with capitalize / uppercase inside array", () => {
+		const input = ["kita", "atik", "tika", "aku", "makan", "kia", "kua"];
+
+		t0 = performance.now();
+		const output = groupingAnagram(input);
+		t1 = performance.now();
+		console.log(`Test #10 : ${t1 - t0} ms.`);
+
+		expect(output).toHaveLength(4);
+		expect(output).toEqual([
+			["kita", "atik", "tika"],
+			["aku", "kua"],
+			["makan"],
+			["kia"],
+		]);
+	});
 });

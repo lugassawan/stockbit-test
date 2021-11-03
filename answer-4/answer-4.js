@@ -1,10 +1,6 @@
 function hash(str) {
 	let sum = 0;
 
-	if (str.length <= 0) {
-		return sum;
-	}
-
 	for (let i = 0; i < str.length; i++) {
 		sum += str.charCodeAt(i);
 	}
