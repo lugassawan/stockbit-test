@@ -1,0 +1,50 @@
+{
+	"name": "stockbit-test",
+	"version": "1.0.0",
+	"main": "index.js",
+	"repository": "git@github.com:lugassawan/stockbit-test.git",
+	"author": "Lugas Septiawan <lugassawan@gmail.com>",
+	"license": "MIT",
+	"private": true,
+	"engines": {
+		"node": ">=14.x",
+		"yarn": "1.x"
+	},
+	"devDependencies": {
+		"@babel/core": "^7.16.0",
+		"@babel/preset-env": "^7.16.0",
+		"babel-jest": "^27.3.1",
+		"jest": "^27.3.1"
+	},
+	"scripts": {
+		"test": "jest",
+		"test:watch": "jest --watch",
+		"test:cov": "jest --coverage"
+	},
+	"jest": {
+		"moduleFileExtensions": [
+			"js",
+			"json"
+		],
+		"roots": [
+			"answer-2",
+			"answer-3",
+			"answer-4"
+		],
+		"testRegex": ".*\\.spec\\.js$",
+		"clearMocks": true,
+		"coverageDirectory": "coverage",
+		"collectCoverageFrom": [
+			"**/*.js"
+		],
+		"coverageThreshold": {
+			"global": {
+				"branches": 100,
+				"functions": 100,
+				"lines": 100,
+				"statements": 100
+			}
+		},
+		"testEnvironment": "node"
+	}
+}
