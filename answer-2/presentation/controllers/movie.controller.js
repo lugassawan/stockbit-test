@@ -1,85 +1,26 @@
 import axios from "axios";
 import CustomError from "./../../helper/custom-error.helper";
+import { OmdbService } from "./../../infrastructure/omdb/omdb.service";
+import { SearchMovieQuery } from "./../../application/movie/queries/search-movie.query";
+import { ResponseHelper } from "./../../helper/response.helper";
 
 export const search = async (req, res) => {
-	try {
-		if (!req.query.q) {
-			throw CustomError("q field is missing from request query", {
-				statusCode: 422,
-				fieldName: "q",
-			});
-		}
+	const query = req.query.q;
+	const page = Number(req.query.page) || 1;
 
-		if (req.query.q.length < 3) {
-			throw CustomError("Minimum length of q string is 3 characters", {
-				statusCode: 422,
-				fieldName: "q",
-			});
-		}
+	const omdbService = new OmdbService();
+	const queryBus = new SearchMovieQuery(omdbService);
+	const { movies, links } = await queryBus.execute(query, page);
 
-		const query = req.query.q;
-		const page = Number(req.query.page) || 1;
-
-		const omdbRes = await axios.get("https://www.omdbapi.com", {
-			params: {
-				apikey: "faf7e5bb",
-				s: query,
-				page,
-			},
-		});
-
-		let statusCode = 404;
-		let movies = [];
-		const links = {
-			first: null,
-			last: null,
-			next: null,
-			prev: null,
-		};
-
-		if (!!omdbRes.data.Search) {
-			if (omdbRes.data.Search.length > 0) {
-				statusCode = 200;
-
-				movies = omdbRes.data.Search.map((m) => ({
-					id: m.imdbID,
-					title: m.Title,
-					year: m.Year,
-					type: m.Type,
-					poster: m.Poster,
-				}));
-
-				const totalResult = Number(omdbRes.data.totalResults) || 1;
-				const totalPage = Math.ceil(totalResult / 10);
-				const baseLink = `/search?q=${query}&page=`;
-
-				links.first = baseLink + "1";
-				links.last = baseLink + totalPage;
-
-				if (page < totalPage) {
-					links.next = baseLink + (page + 1);
-				}
-
-				if (page > 1) {
-					links.prev = baseLink + (page - 1);
-				}
-			}
-		}
-
-		return res.status(statusCode).json({
-			data: {
-				links,
-				movies,
-			},
-			errors: null,
-		});
-	} catch (error) {
-		const statusCode = error.statusCode || 400;
-		return res.status(statusCode).json({
-			data: null,
-			errors: [{ field: error.fieldName, message: error.message }],
-		});
-	}
+	let statusCode = movies.length > 0 ? 200 : 404;
+	return ResponseHelper.toSuccess(
+		res,
+		{
+			links,
+			movies,
+		},
+		{ statusCode }
+	);
 };
 
 export const getMovie = async (req, res) => {

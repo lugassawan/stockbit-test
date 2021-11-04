@@ -36,6 +36,23 @@ describe("Movie API", () => {
 			});
 		});
 
+		test("when page is defined and less than 1 it should return status code 422 and error message", async () => {
+			const res = await request(app)
+				.get("/search")
+				.set("Content-Type", "application/json")
+				.set("Accept", "application/json")
+				.query({ q: "bat", page: 0 });
+
+			expect(res.statusCode).toEqual(422);
+			expect(res.type).toBe("application/json");
+			expect(res.body.data).toBeNull();
+			expect(res.body.errors).toHaveLength(1);
+			expect(res.body.errors[0]).toEqual({
+				field: "page",
+				message: "The page specified may not be zero or negative",
+			});
+		});
+
 		test("when query doesnot have any related data it should return status code 404 and empty array of data", async () => {
 			const res = await request(app)
 				.get("/search")
