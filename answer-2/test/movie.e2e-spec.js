@@ -98,6 +98,24 @@ describe("Movie API", () => {
 	});
 
 	describe("/detail/:id (GET)", () => {
+		test("when id is defined as 'undefined' it should return status code 404 and error message", async () => {
+			const id = undefined;
+
+			const res = await request(app)
+				.get(`/detail/${id}`)
+				.set("Content-Type", "application/json")
+				.set("Accept", "application/json");
+
+			expect(res.statusCode).toEqual(404);
+			expect(res.type).toBe("application/json");
+			expect(res.body.data).toBeNull();
+			expect(res.body.errors).toHaveLength(1);
+			expect(res.body.errors[0]).toEqual({
+				field: "id",
+				message: `Data is not found for ID ${id}`,
+			});
+		});
+
 		test("when data is not found it should return status code 404 and error message", async () => {
 			const id = "xxxxxxxxxxxxxxxxx";
 

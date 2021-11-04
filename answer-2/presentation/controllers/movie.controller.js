@@ -1,7 +1,6 @@
-import axios from "axios";
-import CustomError from "./../../helper/custom-error.helper";
 import { OmdbService } from "./../../infrastructure/omdb/omdb.service";
 import { SearchMovieQuery } from "./../../application/movie/queries/search-movie.query";
+import { GetMovieQuery } from "./../../application/movie/queries/get-movie.query";
 import { ResponseHelper } from "./../../helper/response.helper";
 
 export const search = async (req, res) => {
@@ -24,47 +23,19 @@ export const search = async (req, res) => {
 };
 
 export const getMovie = async (req, res) => {
-	try {
-		const { id } = req.params;
+	const { id } = req.params;
 
-		const omdbRes = await axios.get("https://www.omdbapi.com", {
-			params: {
-				apikey: "faf7e5bb",
-				i: id,
-			},
-		});
+	const omdbService = new OmdbService();
+	const queryBus = new GetMovieQuery(omdbService);
+	const { movie, message } = await queryBus.execute(id);
 
-		const data = {};
-		if (omdbRes.data.Response.toLowerCase() !== "true") {
-			throw CustomError(`Data is not found for ID ${id}`, {
-				statusCode: 404,
-				fieldName: "id",
-			});
-		}
-
-		delete omdbRes.data.Response;
-		Object.keys(omdbRes.data).forEach((key) => {
-			const fieldName = key.toLowerCase();
-			const value = omdbRes.data[key];
-
-			if (fieldName === "imdbid") {
-				data["id"] = value;
-			} else {
-				data[fieldName] = value;
-			}
-		});
-
-		return res.status(200).json({
-			data,
-			errors: null,
-		});
-	} catch (error) {
-		const statusCode = error.statusCode || 400;
-		return res.status(statusCode).json({
-			data: null,
-			errors: [{ field: error.fieldName, message: error.message }],
-		});
+	if (!!movie) {
+		return ResponseHelper.toSuccess(res, movie);
 	}
+
+	return ResponseHelper.toFail(res, [{ field: "id", message }], {
+		statusCode: 404,
+	});
 };
 
 export default { search, getMovie };

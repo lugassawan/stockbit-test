@@ -27,7 +27,7 @@ export class OmdbService {
 		}
 	}
 
-	async findOne(id) {
+	async findById(id) {
 		let dto = null;
 
 		try {
