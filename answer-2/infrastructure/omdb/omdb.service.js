@@ -1,4 +1,5 @@
 import axios from "axios";
+import config from "../../config/config";
 
 export class OmdbService {
 	async findAll(query, page) {
@@ -18,7 +19,8 @@ export class OmdbService {
 					});
 				});
 
-				dto.totalMovie = Number(res.data.totalResults) || 0;
+				dto.totalMovie =
+					Number(res.data.totalResults) || res.data.Search.length;
 			}
 
 			return dto;
@@ -56,9 +58,9 @@ export class OmdbService {
 	}
 
 	__fetch(params) {
-		return axios.get("https://www.omdbapi.com", {
+		return axios.get(config.omdb.url, {
 			params: {
-				apikey: "faf7e5bb",
+				apikey: config.omdb.secretKey,
 				...params,
 			},
 		});
