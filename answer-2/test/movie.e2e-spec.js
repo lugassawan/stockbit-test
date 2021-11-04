@@ -80,20 +80,41 @@ describe("Movie API", () => {
 		});
 	});
 
-	describe.skip("/detail/:id (GET)", () => {
-		/**
-		 * Response
-		 * - Success
-		 * 		- 200
-		 * 			- data : {....}
-		 * 			- error : null
-		 * - Error
-		 * 		- 404 : data based on id not found
-		 * 			- data: null
-		 * 			- error: [{field, message}]
-		 */
-		test("when ... it should return status code ... and ...", () => {
-			//
+	describe("/detail/:id (GET)", () => {
+		test("when data is not found it should return status code 404 and error message", async () => {
+			const id = "xxxxxxxxxxxxxxxxx";
+
+			const res = await request(app)
+				.get(`/detail/${id}`)
+				.set("Content-Type", "application/json")
+				.set("Accept", "application/json");
+
+			expect(res.statusCode).toEqual(404);
+			expect(res.type).toBe("application/json");
+			expect(res.body.data).toBeNull();
+			expect(res.body.errors).toHaveLength(1);
+			expect(res.body.errors[0]).toEqual({
+				field: "id",
+				message: `Data is not found for ID ${id}`,
+			});
+		});
+
+		test("when data is found it should return status code 200 and data", async () => {
+			const id = "tt4853102";
+
+			const res = await request(app)
+				.get(`/detail/${id}`)
+				.set("Content-Type", "application/json")
+				.set("Accept", "application/json");
+
+			expect(res.statusCode).toEqual(200);
+			expect(res.type).toBe("application/json");
+			expect(res.body.data).toHaveProperty("id");
+			expect(res.body.data).toHaveProperty("title");
+			expect(res.body.data).toHaveProperty("year");
+			expect(res.body.data).toHaveProperty("type");
+			expect(res.body.data).toHaveProperty("poster");
+			expect(res.body.errors).toBeNull();
 		});
 	});
 });
