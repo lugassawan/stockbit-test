@@ -36,6 +36,7 @@ describe("Search Movie Query", () => {
 				next: "/search?q=batman&page=3",
 				prev: "/search?q=batman&page=1",
 			});
+			expect(omdbService.findAll).toHaveBeenCalledTimes(1);
 		});
 
 		test("when query is batman and page is 4", async () => {
@@ -72,6 +73,7 @@ describe("Search Movie Query", () => {
 				next: null,
 				prev: "/search?q=batman&page=3",
 			});
+			expect(omdbService.findAll).toHaveBeenCalledTimes(1);
 		});
 
 		test("when query is batman and page is 1", async () => {
@@ -108,6 +110,7 @@ describe("Search Movie Query", () => {
 				next: "/search?q=batman&page=2",
 				prev: null,
 			});
+			expect(omdbService.findAll).toHaveBeenCalledTimes(1);
 		});
 
 		test("when query is xxxx and page is 2", async () => {
@@ -127,6 +130,7 @@ describe("Search Movie Query", () => {
 				next: null,
 				prev: null,
 			});
+			expect(omdbService.findAll).toHaveBeenCalledTimes(1);
 		});
 	});
 });
