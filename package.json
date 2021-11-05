@@ -13,13 +13,13 @@
 	"scripts": {
 		"start": "node answer-2/main.js",
 		"dev": "nodemon answer-2/main.js",
-		"build": "yarn migrate --env production",
 		"test": "cross-env NODE_ENV=test jest",
 		"test:watch": "cross-env NODE_ENV=test jest --watch",
 		"test:cov": "cross-env NODE_ENV=test jest --coverage",
 		"test:e2e": "cross-env NODE_ENV=test jest --config ./answer-2/test/jest-e2e.json",
 		"migrate": "npx sequelize-cli db:migrate",
-		"migrate:reset": "npx sequelize-cli db:migrate:undo:all && yarn migrate"
+		"migrate:reset": "npx sequelize-cli db:migrate:undo:all && yarn migrate",
+		"heroku-cleanup": "yarn migrate --env production"
 	},
 	"dependencies": {
 		"@babel/runtime": "^7.16.0",
