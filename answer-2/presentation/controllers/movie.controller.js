@@ -1,9 +1,9 @@
-import { OmdbService } from "./../../infrastructure/omdb/omdb.service";
-import { SearchMovieQuery } from "./../../application/movie/queries/search-movie.query";
-import { GetMovieQuery } from "./../../application/movie/queries/get-movie.query";
-import { ResponseHelper } from "./../../helper/response.helper";
+const OmdbService = require("./../../infrastructure/omdb/omdb.service");
+const SearchMovieQuery = require("./../../application/movie/queries/search-movie.query");
+const GetMovieQuery = require("./../../application/movie/queries/get-movie.query");
+const ResponseHelper = require("./../../helper/response.helper");
 
-export const search = async (req, res) => {
+const search = async (req, res) => {
 	const query = req.query.q;
 	const page = Number(req.query.page) || 1;
 
@@ -22,7 +22,7 @@ export const search = async (req, res) => {
 	);
 };
 
-export const getMovie = async (req, res) => {
+const getMovie = async (req, res) => {
 	const { id } = req.params;
 
 	const omdbService = new OmdbService();
@@ -38,4 +38,4 @@ export const getMovie = async (req, res) => {
 	});
 };
 
-export default { search, getMovie };
+module.exports = { search, getMovie };

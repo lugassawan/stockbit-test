@@ -1,9 +1,7 @@
-require("@babel/register");
-
 const path = require("path");
 
 module.exports = {
-	config: path.resolve("answer-2/config", "sequelize.cjs"),
+	config: path.resolve("answer-2/config", "sequelize.js"),
 	"models-path": path.resolve("answer-2/infrastructure/database", "models"),
 	"seeders-path": path.resolve("answer-2/infrastructure/database", "seeders"),
 	"migrations-path": path.resolve(

@@ -1,4 +1,4 @@
-export class ResponseHelper {
+module.exports = class ResponseHelper {
 	/**
 	 * Return response as success case
 	 * @param {Express.Response} res
@@ -31,4 +31,4 @@ export class ResponseHelper {
 			errors,
 		});
 	}
-}
+};

@@ -1,10 +1,12 @@
-import express from "express";
-import helmet from "helmet";
-import cors from "cors";
-import router from "./presentation/router";
+const express = require("express");
+const morgan = require("morgan");
+const helmet = require("helmet");
+const cors = require("cors");
+const router = require("./presentation/router");
 
 const app = express();
 
+app.use(morgan("combined"));
 app.use(helmet());
 app.use(cors());
 app.use(express.json());
@@ -20,4 +22,4 @@ app.use((req, res) => {
 	});
 });
 
-export default app;
+module.exports = app;

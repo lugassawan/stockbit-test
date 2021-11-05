@@ -1,11 +1,14 @@
-import { Router } from "express";
-import homeController from "./controllers/home.controller";
-import movieController from "./controllers/movie.controller";
-import logController from "./controllers/log.controller";
-import searchMovieParamValidator from "./validators/search-movie-param.validator";
-import endpointLogMiddleware from "./middlewares/endpoint-log.middleware";
+const express = require("express");
 
-const router = Router();
+const homeController = require("./controllers/home.controller");
+const movieController = require("./controllers/movie.controller");
+const logController = require("./controllers/log.controller");
+const searchMovieParamValidator = require("./validators/search-movie-param.validator");
+const endpointLogMiddleware = require("./middlewares/endpoint-log.middleware");
+
+const router = express.Router();
+
+router.use(endpointLogMiddleware.write);
 
 router.get("/", homeController.greetHello);
 router.get(
@@ -16,6 +19,4 @@ router.get(
 router.get("/detail/:id", movieController.getMovie);
 router.get("/logs", logController.getLogs);
 
-router.use(endpointLogMiddleware.write);
-
-export default router;
+module.exports = router;

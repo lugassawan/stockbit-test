@@ -1,4 +1,4 @@
-export class AddLogCommand {
+module.exports = class AddLogCommand {
 	constructor(logRepository) {
 		this.logRepository = logRepository;
 	}
@@ -11,4 +11,4 @@ export class AddLogCommand {
 			query,
 		});
 	}
-}
+};

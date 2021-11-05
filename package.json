@@ -6,14 +6,13 @@
 	"author": "Lugas Septiawan <lugassawan@gmail.com>",
 	"license": "MIT",
 	"private": true,
-	"type": "module",
 	"engines": {
 		"node": ">=14.x",
 		"yarn": "1.x"
 	},
 	"scripts": {
-		"start": "node --experimental-specifier-resolution=node answer-2/main.js",
-		"dev": "nodemon --experimental-specifier-resolution=node answer-2/main.js",
+		"start": "node answer-2/main.js",
+		"dev": "nodemon answer-2/main.js",
 		"test": "cross-env NODE_ENV=test jest",
 		"test:watch": "cross-env NODE_ENV=test jest --watch",
 		"test:cov": "cross-env NODE_ENV=test jest --coverage",
@@ -28,6 +27,7 @@
 		"dotenv": "^10.0.0",
 		"express": "^4.17.1",
 		"helmet": "^4.6.0",
+		"morgan": "^1.10.0",
 		"mysql2": "^2.3.2",
 		"sequelize": "^6.9.0"
 	},

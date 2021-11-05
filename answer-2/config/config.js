@@ -1,8 +1,8 @@
-import dotenv from "dotenv";
+const dotenv = require("dotenv");
 
 dotenv.config();
 
-export default {
+module.exports = {
 	app: {
 		port: process.env.PORT || 3001,
 	},
@@ -20,7 +20,7 @@ export default {
 		username: process.env.DB_USERNAME,
 		password: process.env.DB_PASSWORD,
 		dialect: process.env.DB_DIALECT,
-		logging: process.env.NODE_ENV !== "test",
+		logging: process.env.NODE_ENV === "test" ? false : console.log,
 		ssl: process.env.NODE_ENV === "production",
 		dialectOptions:
 			process.env.NODE_ENV === "production"

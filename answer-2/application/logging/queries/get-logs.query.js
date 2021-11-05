@@ -1,4 +1,4 @@
-export class GetLogsQuery {
+module.exports = class GetLogsQuery {
 	constructor(logRepository) {
 		this.logRepository = logRepository;
 	}
@@ -46,4 +46,4 @@ export class GetLogsQuery {
 			logs: results,
 		};
 	}
-}
+};

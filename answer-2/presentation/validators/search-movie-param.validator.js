@@ -1,6 +1,6 @@
-import { ResponseHelper } from "./../../helper/response.helper";
+const ResponseHelper = require("./../../helper/response.helper");
 
-export const validate = (req, res, next) => {
+const validate = (req, res, next) => {
 	const statusCode = 422;
 
 	if (!req.query.q) {
@@ -40,4 +40,4 @@ export const validate = (req, res, next) => {
 	next();
 };
 
-export default { validate };
+module.exports = { validate };

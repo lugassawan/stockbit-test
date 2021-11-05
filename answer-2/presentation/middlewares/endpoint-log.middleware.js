@@ -1,7 +1,7 @@
-import { LogRepository } from "./../../infrastructure/repositories/log.repository";
-import { AddLogCommand } from "./../../application/logging/commands/add-log.command";
+const LogRepository = require("./../../infrastructure/repositories/log.repository");
+const AddLogCommand = require("./../../application/logging/commands/add-log.command");
 
-export const write = async (req, res, next) => {
+const write = async (req, res, next) => {
 	const logRepository = new LogRepository();
 	const commandBus = new AddLogCommand(logRepository);
 	await commandBus.execute({
@@ -14,4 +14,4 @@ export const write = async (req, res, next) => {
 	next();
 };
 
-export default { write };
+module.exports = { write };

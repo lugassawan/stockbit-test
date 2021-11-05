@@ -1,4 +1,4 @@
-export const greetHello = (req, res) => {
+const greetHello = (req, res) => {
 	return res.status(200).json({
 		data: {
 			hostname: req.hostname,
@@ -8,4 +8,4 @@ export const greetHello = (req, res) => {
 	});
 };
 
-export default { greetHello };
+module.exports = { greetHello };

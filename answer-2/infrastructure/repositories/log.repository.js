@@ -1,10 +1,10 @@
-import { Op } from "sequelize";
-import models from "../database/models";
-import stringHelper from "../../helper/string.helper";
+const { Op } = require("sequelize");
+const db = require("../database/models");
+const stringHelper = require("../../helper/string.helper");
 
-export class LogRepository {
+module.exports = class LogRepository {
 	constructor() {
-		this.model = models.Log;
+		this.model = db.Log;
 	}
 
 	async findAll({ pathname, page, limit }) {
@@ -45,4 +45,4 @@ export class LogRepository {
 			createdOn: data.createdAt,
 		};
 	}
-}
+};

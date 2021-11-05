@@ -1,4 +1,4 @@
-export const escape = (str) => {
+const escape = (str) => {
 	if (str === null || str.length < 1) {
 		return "";
 	}
@@ -6,4 +6,4 @@ export const escape = (str) => {
 	return str.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
 };
 
-export default { escape };
+module.exports = { escape };

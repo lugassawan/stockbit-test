@@ -1,7 +1,7 @@
-import axios from "axios";
-import config from "../../config/config";
+const axios = require("axios");
+const config = require("../../config/config");
 
-export class OmdbService {
+module.exports = class OmdbService {
 	async findAll(query, page) {
 		const dto = { results: [], totalMovie: 0 };
 
@@ -65,4 +65,4 @@ export class OmdbService {
 			},
 		});
 	}
-}
+};

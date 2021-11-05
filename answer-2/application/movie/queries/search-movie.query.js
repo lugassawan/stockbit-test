@@ -1,4 +1,4 @@
-export class SearchMovieQuery {
+module.exports = class SearchMovieQuery {
 	constructor(omdbService) {
 		this.omdbService = omdbService;
 	}
@@ -34,4 +34,4 @@ export class SearchMovieQuery {
 			movies: results,
 		};
 	}
-}
+};
