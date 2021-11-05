@@ -17,7 +17,9 @@
 		"test": "cross-env NODE_ENV=test jest",
 		"test:watch": "cross-env NODE_ENV=test jest --watch",
 		"test:cov": "cross-env NODE_ENV=test jest --coverage",
-		"test:e2e": "cross-env NODE_ENV=test jest --config ./answer-2/test/jest-e2e.json"
+		"test:e2e": "cross-env NODE_ENV=test jest --config ./answer-2/test/jest-e2e.json",
+		"migrate": "npx sequelize-cli db:migrate",
+		"migrate:reset": "npx sequelize-cli db:migrate:undo:all && yarn migrate"
 	},
 	"dependencies": {
 		"@babel/runtime": "^7.16.0",
@@ -25,16 +27,20 @@
 		"cors": "^2.8.5",
 		"dotenv": "^10.0.0",
 		"express": "^4.17.1",
-		"helmet": "^4.6.0"
+		"helmet": "^4.6.0",
+		"mysql2": "^2.3.2",
+		"sequelize": "^6.9.0"
 	},
 	"devDependencies": {
 		"@babel/core": "^7.16.0",
 		"@babel/plugin-transform-runtime": "^7.16.0",
 		"@babel/preset-env": "^7.16.0",
+		"@babel/register": "^7.16.0",
 		"babel-jest": "^27.3.1",
 		"cross-env": "^7.0.3",
 		"jest": "^27.3.1",
 		"nodemon": "^2.0.14",
+		"sequelize-cli": "^6.3.0",
 		"supertest": "^6.1.6"
 	},
 	"jest": {

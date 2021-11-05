@@ -12,9 +12,23 @@ export default {
 	},
 	db: {
 		host: process.env.DB_HOST,
-		name: process.env.DB_NAME,
+		port: process.env.DB_PORT,
+		database:
+			process.env.NODE_ENV === "test"
+				? process.env.DB_NAME_TEST
+				: process.env.DB_NAME,
 		username: process.env.DB_USERNAME,
 		password: process.env.DB_PASSWORD,
 		dialect: process.env.DB_DIALECT,
+		logging: process.env.NODE_ENV !== "test",
+		ssl: process.env.NODE_ENV === "production",
+		dialectOptions:
+			process.env.NODE_ENV === "production"
+				? {
+						ssl: {
+							require: process.env.NODE_ENV === "production",
+						},
+				  }
+				: {},
 	},
 };
