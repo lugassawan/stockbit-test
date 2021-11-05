@@ -21,14 +21,5 @@ module.exports = {
 		password: process.env.DB_PASSWORD,
 		dialect: process.env.DB_DIALECT,
 		logging: process.env.NODE_ENV === "test" ? false : console.log,
-		ssl: process.env.NODE_ENV === "production",
-		dialectOptions:
-			process.env.NODE_ENV === "production"
-				? {
-						ssl: {
-							require: process.env.NODE_ENV === "production",
-						},
-				  }
-				: {},
 	},
 };
