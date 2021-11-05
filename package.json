@@ -17,6 +17,9 @@
 		"test:watch": "cross-env NODE_ENV=test jest --watch",
 		"test:cov": "cross-env NODE_ENV=test jest --coverage",
 		"test:e2e": "cross-env NODE_ENV=test jest --config ./answer-2/test/jest-e2e.json",
+		"test:answer2": "cross-env NODE_ENV=test jest answer-2",
+		"test:answer3": "cross-env NODE_ENV=test jest answer-3",
+		"test:answer4": "cross-env NODE_ENV=test jest answer-4",
 		"migrate": "npx sequelize-cli db:migrate",
 		"migrate:reset": "npx sequelize-cli db:migrate:undo:all && yarn migrate",
 		"heroku-cleanup": "yarn migrate --url 'mysql://bd6cbbba29c97a:58eb0230@us-cdbr-east-04.cleardb.com/heroku_a53f1cf36cd276a' --env production"
