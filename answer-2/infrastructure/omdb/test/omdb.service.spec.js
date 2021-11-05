@@ -1,4 +1,4 @@
-import { OmdbService } from "./../omdb.service";
+const OmdbService = require("./../omdb.service");
 
 describe("Omdb Service", () => {
 	let omdbService;

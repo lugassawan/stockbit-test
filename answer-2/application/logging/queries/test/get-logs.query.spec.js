@@ -1,4 +1,4 @@
-import { GetLogsQuery } from "../get-logs.query";
+const GetLogsQuery = require("../get-logs.query");
 
 describe("Get Logs Query", () => {
 	describe("execute", () => {

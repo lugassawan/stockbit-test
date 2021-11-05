@@ -1,5 +1,5 @@
-import request from "supertest";
-import app from "../app";
+const request = require("supertest");
+const app = require("../app");
 
 describe("Movie API", () => {
 	describe("/search (GET)", () => {

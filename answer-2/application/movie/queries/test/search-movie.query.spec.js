@@ -1,4 +1,4 @@
-import { SearchMovieQuery } from "./../search-movie.query";
+const SearchMovieQuery = require("./../search-movie.query");
 
 describe("Search Movie Query", () => {
 	describe("execute", () => {

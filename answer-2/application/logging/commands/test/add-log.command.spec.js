@@ -1,4 +1,4 @@
-import { AddLogCommand } from "./../add-log.command";
+const AddLogCommand = require("./../add-log.command");
 
 describe("Add Log Command", () => {
 	describe("execute", () => {

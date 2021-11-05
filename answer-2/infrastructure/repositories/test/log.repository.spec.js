@@ -1,5 +1,5 @@
-import { LogRepository } from "./../log.repository";
-import db from "../../database/models";
+const LogRepository = require("./../log.repository");
+const db = require("../../database/models");
 
 describe("Log Repository", () => {
 	let repo;

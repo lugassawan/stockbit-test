@@ -1,4 +1,4 @@
-import { GetMovieQuery } from "./../get-movie.query";
+const GetMovieQuery = require("./../get-movie.query");
 
 describe("Get Movie Query", () => {
 	describe("execute", () => {
