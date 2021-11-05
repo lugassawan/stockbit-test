@@ -25,11 +25,13 @@ module.exports = class LogRepository {
 	}
 
 	async save({ method, pathname, params, query }) {
+		const paramsTxt = JSON.stringify(!!params ? params : {});
+		const queryTxt = JSON.stringify(!!query ? query : {});
 		const logData = await this.model.create({
 			method: method.toUpperCase(),
 			pathname,
-			params: !!params ? params : {},
-			query: !!query ? query : {},
+			params: paramsTxt,
+			query: queryTxt,
 		});
 
 		return this.__toEntity(logData);
@@ -40,8 +42,8 @@ module.exports = class LogRepository {
 			id: data.id,
 			method: data.method,
 			pathname: data.pathname,
-			params: data.params,
-			query: data.query,
+			params: JSON.parse(data.params),
+			query: JSON.parse(data.query),
 			createdOn: data.createdAt,
 		};
 	}

@@ -19,11 +19,11 @@ module.exports = (sequelize, DataTypes) => {
 				allowNull: false,
 			},
 			params: {
-				type: DataTypes.JSON,
+				type: DataTypes.TEXT,
 				allowNull: false,
 			},
 			query: {
-				type: DataTypes.JSON,
+				type: DataTypes.TEXT,
 				allowNull: false,
 			},
 			createdAt: {

@@ -17,11 +17,11 @@ module.exports = {
 				allowNull: false,
 			},
 			params: {
-				type: Sequelize.JSON,
+				type: Sequelize.TEXT,
 				allowNull: false,
 			},
 			query: {
-				type: Sequelize.JSON,
+				type: Sequelize.TEXT,
 				allowNull: false,
 			},
 			created_at: {
